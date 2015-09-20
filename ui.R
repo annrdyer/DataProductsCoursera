@@ -3,7 +3,7 @@ library(shiny)
 
 shinyUI(  
    pageWithSidebar(  
-     # Application title  
+    
      headerPanel('Temperature Comparison By City'),
                  
      sidebarPanel(  

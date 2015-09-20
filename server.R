@@ -1,30 +1,13 @@
 library(shiny)
-
-#diabetesRisk <- function(glucose) glucose / 200  
-
-Celsius    <- function(integer) { (integer-32)/1.8 }
-Fahrenheit <- function(integer) { integer*1.8 + 32 }
+library(ggplot2)
 
 data <- read.csv(file="CityTemps.csv",head=TRUE,sep=",")
 
 
-library(ggplot2)
-
-
 shinyServer(  
   function(input, output) {  
-     
-     output$temp_unit <- renderPrint({input$units}) 
-     output$temp_type <- renderPrint({input$type}) 
-     output$first_city <- renderPrint({input$city1}) 
-     output$second_city <- renderPrint({input$city2}) 
-     
-     output$temp <- renderPrint({
-     if(input$units == "Celsius") {Fahrenheit(input$integer)}   
-     })
-     
-            
-     output$newPlot <- renderPlot({
+                     
+       output$newPlot <- renderPlot({
        
        plotData <- subset(data, data$City == input$city1 | data$City == input$city2)
           
