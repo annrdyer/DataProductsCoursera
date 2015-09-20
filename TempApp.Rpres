@@ -1,0 +1,67 @@
+Temperature Comparison Shiny App
+========================================================
+author: Ann Chavarria
+date:   September 20, 2015
+font-family: 'Helvetica'
+transition: linear
+transition-speed: fast
+
+Data Products Assignment
+
+Temperature Comparison Shiny App
+========================================================
+
+
+The Temperature Comparison Shiny App generates a graph of historical monthly temperatures based on user inputs.
+
+
+
+User Input Options
+- Celsius or Fahrenheit
+- Average, Low, or High Temperatures
+- 7 Cities to Select for Comparisons
+
+
+
+Example Graphical Output
+========================================================
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+data <- read.csv(file="~/DataScience/DataProducts/ShinyApp/CityTemps.csv",head=TRUE,sep=",")
+plotData <- subset(data, data$City == "London" | data$City == "New York")
+
+ggplot(plotData, aes(x = Month, y = AveTemp, colour = City)) + geom_line(size=1) + geom_point(size=4) +
+       ggtitle("Average Monthly Temperature") + labs(x="Month",y="Degrees  Fahrenheit") +
+       scale_x_discrete(labels= c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")) +
+       scale_y_continuous( limits = c(20,100) ) +
+       theme(plot.title = element_text(face="bold", size=17))  +
+       theme(axis.text.x=element_text(size=15)) +
+       theme(axis.text.y=element_text(size=15))  +
+       theme(axis.title.x = element_text(size = 17)) +
+       theme(axis.title.y = element_text(size = 17)) +
+       theme(legend.title=element_text(size=15))
+```
+
+Temperature data was obtained from www.weatherbase.com.
+
+
+
+
+Why use this App?
+========================================================
+
+- Useful for deciding best month weather wise for visiting a city.
+- Useful for reviewing a city's climate before deciding to move to a particular city.
+- Just fun to compare temperature patterns in different cities!!
+
+
+Potential Enhancements to Shiny App
+========================================================
+The Temperature Comparison App can easily be enhanced by adding:
+
+- All major cities worldwide
+- Monthly precipitation
+- Monthly days of sunshine
+- Additional weather and city details as desired
